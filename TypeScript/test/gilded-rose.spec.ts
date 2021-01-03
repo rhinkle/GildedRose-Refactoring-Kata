@@ -48,6 +48,8 @@ describe('Gilded Rose', function () {
                 new Item("Backstage passes to a TAFKAL80ETC concert", 5, 25),
                 new Item("Aged Brie", 10, 25),
                 new Item("Backstage passes to a TAFKAL80ETC concert", 5, 51),
+                new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
+
             ];
             rose = new GildedRose(stock);
             items = rose.updateQuality();
@@ -82,6 +84,11 @@ describe('Gilded Rose', function () {
             expect(items[4].quality).greaterThan(50);
 
             expect(items[4].quality).equal(51);
+        });
+        it('should not increment by 2 only 1', () => {
+            expect(items[5].name).equal('Backstage passes to a TAFKAL80ETC concert');
+
+            expect(items[5].quality).equal(50);
         });
     });
 
