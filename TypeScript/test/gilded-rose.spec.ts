@@ -47,25 +47,41 @@ describe('Gilded Rose', function () {
                 new Item("Backstage passes to a TAFKAL80ETC concert", 8, 25),
                 new Item("Backstage passes to a TAFKAL80ETC concert", 5, 25),
                 new Item("Aged Brie", 10, 25),
+                new Item("Backstage passes to a TAFKAL80ETC concert", 5, 51),
             ];
             rose = new GildedRose(stock);
             items = rose.updateQuality();
         });
 
         it('should increment by one', () => {
+            expect(items[0].name).equal('Backstage passes to a TAFKAL80ETC concert');
+
             expect(items[0].quality).equal(26);
         })
 
         it('should increment by 2', () => {
+            expect(items[0].name).equal('Backstage passes to a TAFKAL80ETC concert');
+
             expect(items[1].quality).equal(27);
         })
 
         it('should increment by 3', () => {
+            expect(items[0].name).equal('Backstage passes to a TAFKAL80ETC concert');
+
             expect(items[2].quality).equal(28);
         })
 
-        it('item.name = Aged Brie should increment by 1', () => {
+        it('should increment by 1', () => {
+            expect(items[3].name).equal('Aged Brie');
+
             expect(items[3].quality).equal(26);
+        });
+
+        it('should not increment by 1', () => {
+            expect(items[4].name).equal('Backstage passes to a TAFKAL80ETC concert');
+            expect(items[4].quality).greaterThan(50);
+
+            expect(items[4].quality).equal(51);
         });
     });
 
@@ -82,7 +98,9 @@ describe('Gilded Rose', function () {
             items = rose.updateQuality();
         });
 
-        it('item.name = Aged Brie should minus 1 item.sellIn', function () {
+        it('should minus 1 item.sellIn', function () {
+            expect(items[0].name).equal('Aged Brie');
+
             expect(items[0].sellIn).equal(9);
         });
 
@@ -101,17 +119,38 @@ describe('Gilded Rose', function () {
                 new Item('Sulfuras, Hand of Ragnaros', 0, 10),
                 new Item('Backstage passes to a TAFKAL80ETC concert', 0, 10),
                 new Item("+5 Dexterity Vest", 0, 10),
+                new Item("Aged Brie", 0, 51),
+                new Item("+5 Dexterity Vest", 0, 0),
             ];
             rose = new GildedRose(stock);
             items = rose.updateQuality();
         });
 
-        it('item.name = Aged Brie should increment +2 item.quality', () => {
+        it('should increment +2 item.quality', () => {
+            expect(items[0].name).equal('Aged Brie');
+
             expect(items[0].quality).equal(12);
         });
 
-        it('item.name = Backstage passes to a TAFKAL80ETC concert should change item.quality to 0', function () {
+        it('should change item.quality to 0', () => {
+            expect(items[2].name).equal('Backstage passes to a TAFKAL80ETC concert');
+
             expect(items[2].quality).equal(0);
+        });
+
+        it('should not minus one from item.quality', () => {
+            expect(items[5].name).not.equal('Aged Brie');
+            expect(items[5].name).not.equal('Backstage passes to a TAFKAL80ETC concert');
+
+            expect(items[5].quality).equal(0);
+        });
+
+
+        it('should not increment one', () => {
+            expect(items[4].name).equal('Aged Brie');
+            expect(items[4].quality).greaterThan(50);
+
+            expect(items[4].quality).equal(51);
         });
     });
 });
