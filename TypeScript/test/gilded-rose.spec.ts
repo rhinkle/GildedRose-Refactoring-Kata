@@ -16,6 +16,7 @@ describe('Gilded Rose', function () {
         const stock = [
             new Item("+5 Dexterity Vest", 10, 20),
             new Item("+5 Dexterity Vest", 10, 0),
+            new Item("+5 Dexterity Vest", 0, 10),
         ];
 
         before(() => {
@@ -30,6 +31,10 @@ describe('Gilded Rose', function () {
 
         it('quality of an item is never negative', () => {
             expect(items[1].quality).equal(0);
+        });
+
+        it('quality degrades twice as fast when sell by date has passed, ', () => {
+            expect(items[2].quality).equal(8);
         });
     });
 
@@ -72,6 +77,7 @@ describe('Gilded Rose', function () {
         const stock = [
             new Item("Aged Brie", 10, 20),
             new Item("Aged Brie", 10, 50),
+            new Item("Aged Brie", 0, 10),
         ];
 
         before(() => {
@@ -85,6 +91,9 @@ describe('Gilded Rose', function () {
 
         it('should not exceed 50 in value for Quality', () => {
             expect(items[1].quality).equal(50);
+        });
+        it('should increase by 2 after sell date pasted', () => {
+            expect(items[2].quality).equal(12);
         });
     });
 
