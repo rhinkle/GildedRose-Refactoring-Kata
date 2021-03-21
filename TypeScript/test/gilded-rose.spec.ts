@@ -9,7 +9,6 @@ describe('Gilded Rose', function () {
         expect(items.length).equal(0);
     });
 
-
     describe('Non-special cases with +5 Dex Vest', () => {
         let rose: GildedRose;
         let items: Array<Item>;
